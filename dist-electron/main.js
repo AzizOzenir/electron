@@ -1,14 +1,30 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
-app.on('ready', () => {
+import { app, BrowserWindow } from "electron";
+import path from "path";
+import { isDev } from "./utils.js";
+import { poolResouserces } from "./resource_manager.js";
+import { getPreloadPath } from "./path_resolver.js";
+app.on("ready", () => {
     const mainWindow = new BrowserWindow({
         width: 1920,
         height: 1080,
+        // fullscreen: true,
+        //fullscreenable:true,
+        hasShadow: true,
+        roundedCorners: true,
+        frame: true,
+        resizable: true,
+        autoHideMenuBar: true,
+        title: "🚀 ElectronVite App",
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        }
+            preload: getPreloadPath(),
+        },
     });
-    mainWindow.loadFile(path.join(app.getAppPath() + '/dist-react/index.html'));
-    mainWindow.webContents.openDevTools();
+    if (isDev()) {
+        mainWindow.loadURL("http://localhost:5123");
+        //    mainWindow.webContents.openDevTools();
+    }
+    else {
+        mainWindow.loadFile(path.join(app.getAppPath() + "/dist-react/index.html"));
+    }
+    poolResouserces();
 });

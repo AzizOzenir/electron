@@ -1,0 +1,19 @@
+{
+  "appId": "com.aziz-ozenir.electron-course",
+  "files": ["dist-electron", "dist-react"],
+"extraResources": [
+    "dist-electron/preload.cjs"
+    
+  ],
+  "icon":"./public/logo.jpg",
+  "mac": {
+    "target": "dmg"
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  },
+  "win": {
+    "target": ["portable", "msi"]
+  }
+}

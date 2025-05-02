@@ -5,7 +5,8 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
+// @ts-ignore
+  window.electron.getStaticData()
   return (
     <>
       <div>
@@ -16,7 +17,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      csaaaa
+      csaaaaxxxxxxxxxxx
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
